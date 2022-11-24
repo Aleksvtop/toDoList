@@ -1,16 +1,14 @@
 import React from 'react';
-import {FilterValuesType} from "./App";
+import {FilterValuesType, TaskType} from "./App";
 
-type TaskType = {
-    id: number
-    title: string
-    isDone: boolean
-}
+
+
 
 type PropsType = {
     title: string
     tasks: Array<TaskType>
-    removeTask: (taskId: number) => void
+    addTask: (title: string) => void
+    removeTask: (taskId: string) => void
     changeFilter: (value: FilterValuesType) => void
 }
 
@@ -19,7 +17,7 @@ export function Todolist(props: PropsType) {
         <h3>{props.title}</h3>
         <div>
             <input/>
-            <button>+</button>
+            <button onClick={() => props.addTask("меня нажали!!!")}>+</button>
         </div>
         <ul>
             {props.tasks.map((task) => {
