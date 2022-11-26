@@ -22,11 +22,18 @@ function App() {
     ])
     let [filter, setFilter] = useState<FilterValuesType>('all')
 
-    let tasksForTodoList = tasks
-    if (filter === 'active') {
-        tasksForTodoList = tasks.filter(task => task.isDone === false)
-    } else if (filter === 'completed') {
-        tasksForTodoList = tasks.filter(task => task.isDone === true)
+
+
+    const getFilteredTasks =(tasks: Array<TaskType>, filter: FilterValuesType): Array<TaskType> => {
+        switch (filter){
+            case "completed":
+                return tasks.filter(task => task.isDone)
+            case "active":
+                return tasks.filter(task => !task.isDone)
+            default:
+                return tasks
+        }
+
     }
 
     function changeFilter(value: FilterValuesType) {
@@ -38,21 +45,25 @@ function App() {
         setTasks(filteredTasks)
     }
 
+    /*const addTask = (title: string) => {
+        setTasks([{id:v1(),title,isDone: false},...tasks])
+    }*/
+    //выше представлена сокращенная запись (тяжелее дебажить и рефакторить)
     const addTask = (title: string) => {
         const newTask: TaskType = {
             id: v1(),
-            title: title,
+            title,
             isDone: false
         }
         const copyTasks = [...tasks]
         copyTasks.unshift(newTask)
         setTasks(copyTasks)
     }
-
+    const filteredTasks: Array<TaskType> = getFilteredTasks(tasks, filter)
     return (
         <div className="App">
             <Todolist title="What to learn"
-                      tasks={tasksForTodoList}
+                      tasks={filteredTasks}
                       addTask={addTask}
                       removeTask={removeTask}
                       changeFilter={changeFilter}/>
