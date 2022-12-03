@@ -23,9 +23,8 @@ function App() {
     let [filter, setFilter] = useState<FilterValuesType>('all')
 
 
-
-    const getFilteredTasks =(tasks: Array<TaskType>, filter: FilterValuesType): Array<TaskType> => {
-        switch (filter){
+    const getFilteredTasks = (tasks: Array<TaskType>, filter: FilterValuesType): Array<TaskType> => {
+        switch (filter) {
             case "completed":
                 return tasks.filter(task => task.isDone)
             case "active":
@@ -45,10 +44,6 @@ function App() {
         setTasks(filteredTasks)
     }
 
-    /*const addTask = (title: string) => {
-        setTasks([{id:v1(),title,isDone: false},...tasks])
-    }*/
-    //выше представлена сокращенная запись (тяжелее дебажить и рефакторить)
     const addTask = (title: string) => {
         const newTask: TaskType = {
             id: v1(),
@@ -59,13 +54,30 @@ function App() {
         copyTasks.unshift(newTask)
         setTasks(copyTasks)
     }
+    /*const addTask = (title: string) => {
+        setTasks([{id:v1(),title,isDone: false},...tasks])
+    }*/
+    //выше представлена сокращенная запись (тяжелее дебажить и рефакторить)
+    const changeTaskStatus = (taskId: string, isDone: boolean) => {
+        /*setTasks(tasks.map((task ) => {
+            if(task.id === taskId) {
+                return {...task, isDone: !task.isDone}
+            } else {
+                return task
+            }
+        }))*/
+        //Ниже представлен сокращенный вариант записи этой же функции
+        setTasks(tasks.map(t => t.id === taskId ? {...t, isDone: isDone} : t))
+    }
     const filteredTasks: Array<TaskType> = getFilteredTasks(tasks, filter)
     return (
         <div className="App">
             <Todolist title="What to learn"
                       tasks={filteredTasks}
+                      filter={filter}
                       addTask={addTask}
                       removeTask={removeTask}
+                      changeTaskStatus={changeTaskStatus}
                       changeFilter={changeFilter}/>
         </div>
     );
