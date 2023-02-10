@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {Todolist} from './Todolist';
 import {v1} from 'uuid';
+import SuperInput from "./components/SuperInput";
 
 export type FilterValuesType = "all" | "active" | "completed";
 
@@ -49,7 +50,7 @@ function App() {
 
     function addTask(todolistID:string, title: string) {
         let newTask = {id: v1(), title: title, isDone: false};
-        setTasks({...tasks,[todolistID]:[...tasks[todolistID], newTask]});
+        setTasks({...tasks,[todolistID]:[ newTask,...tasks[todolistID]]});
     }
 
     function changeStatus(todolistID:string, taskId: string, isDone: boolean) {
@@ -62,9 +63,16 @@ function App() {
         setTodolists(todolists.map(el => el.id === todolistID ? {...el, filter: value} : el))
     }
 
+    const addTodolist=(newTitle:string)=>{
+        const newTodolistId = v1()
+        const newTodolist: TodolistsType={id: newTodolistId, title: newTitle, filter: 'all'}
+        setTodolists([newTodolist,...todolists])
+        setTasks({[newTodolistId]:[],...tasks})
+    }
 
     return (
         <div className="App">
+            <SuperInput callBack={addTodolist}/>
             {todolists.map((el) => {
                 let tasksForTodolist = tasks[el.id];
 
