@@ -1,10 +1,10 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 
-type PropsSuperInputType={
-    callBack: (title:string) => void
+type PropsSuperInputType = {
+    callBack: (title: string) => void
 }
 
-export const SuperInput = (props:PropsSuperInputType) => {
+export const SuperInput = (props: PropsSuperInputType) => {
     let [title, setTitle] = useState("")
     let [error, setError] = useState<string | null>(null)
     const addTask = () => {
@@ -30,7 +30,7 @@ export const SuperInput = (props:PropsSuperInputType) => {
         <div>
             <input value={title}
                    onChange={onChangeHandler}
-                   onKeyPress={onKeyPressHandler}
+                   onKeyDown={onKeyPressHandler}
                    className={error ? "error" : ""}
             />
             <button onClick={addTask}>+</button>
