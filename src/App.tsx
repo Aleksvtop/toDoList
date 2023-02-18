@@ -3,6 +3,11 @@ import './App.css';
 import {Todolist} from './Todolist';
 import {v1} from 'uuid';
 import SuperInput from "./components/SuperInput";
+import ButtonAppBar from "./components/ButtonAppBar";
+import Container from "@mui/material/Container";
+import Grid from '@mui/material/Grid'
+import Paper from "@mui/material/Paper";
+
 
 export type FilterValuesType = "all" | "active" | "completed";
 
@@ -80,33 +85,42 @@ function App() {
 
     return (
         <div className="App">
-            <SuperInput callBack={addTodolist}/>
-            {todolists.map((el) => {
-                let tasksForTodolist = tasks[el.id];
+            <ButtonAppBar/>
+            <Container fixed>
+                <Grid container style={{padding:'10px'}}>
+                    <SuperInput callBack={addTodolist}/>
+                </Grid>
+                <Grid container spacing={3}>
+                    {todolists.map((el) => {
+                        let tasksForTodolist = tasks[el.id];
 
-                if (el.filter === "active") {
-                    tasksForTodolist = tasks[el.id].filter(t => !t.isDone);
-                }
-                if (el.filter === "completed") {
-                    tasksForTodolist = tasks[el.id].filter(t => t.isDone);
-                }
-                return (
-                    <Todolist key={el.id}
-                              todolistID={el.id}
-                              title={el.title}
-                              tasks={tasksForTodolist}
-                              removeTask={removeTask}
-                              changeFilter={changeFilter}
-                              addTask={addTask}
-                              changeTaskStatus={changeStatus}
-                              removeTodolist={removeTodolist}
-                              filter={el.filter}
-                              editTask={editTask}
-                              editTodolist={editTodolist}
-                    />
-                )
-            })}
+                        if (el.filter === "active") {
+                            tasksForTodolist = tasks[el.id].filter(t => !t.isDone);
+                        }
+                        if (el.filter === "completed") {
+                            tasksForTodolist = tasks[el.id].filter(t => t.isDone);
+                        }
+                        return <Grid item>
+                            <Paper style={{padding:'10px'}}>
+                            <Todolist key={el.id}
+                                      todolistID={el.id}
+                                      title={el.title}
+                                      tasks={tasksForTodolist}
+                                      removeTask={removeTask}
+                                      changeFilter={changeFilter}
+                                      addTask={addTask}
+                                      changeTaskStatus={changeStatus}
+                                      removeTodolist={removeTodolist}
+                                      filter={el.filter}
+                                      editTask={editTask}
+                                      editTodolist={editTodolist}
+                            />
+                        </Paper>
+                        </Grid>
+                    })}
+                </Grid>
 
+            </Container>
         </div>
     );
 }
