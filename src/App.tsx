@@ -11,7 +11,7 @@ import Paper from "@mui/material/Paper";
 
 export type FilterValuesType = "all" | "active" | "completed";
 
-type TodolistsType = {
+export type TodolistsType = {
     id: string
     title: string
     filter: FilterValuesType
