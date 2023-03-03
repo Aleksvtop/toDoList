@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox'
 import {SuperCheckBox} from "./components/SuperCheckBox";
 
-type TaskType = {
+export type TaskType = {
     id: string
     title: string
     isDone: boolean

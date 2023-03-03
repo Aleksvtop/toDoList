@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
-import {Todolist} from './Todolist';
+import {TaskType, Todolist} from './Todolist';
 import {v1} from 'uuid';
 import SuperInput from "./components/SuperInput";
 import ButtonAppBar from "./components/ButtonAppBar";
@@ -16,6 +16,9 @@ export type TodolistsType = {
     title: string
     filter: FilterValuesType
 }
+export type TasksStateType = {
+    [key:string]:TaskType[]
+}
 
 function App() {
 
@@ -27,7 +30,7 @@ function App() {
         {id: todolistID2, title: 'What to buy', filter: 'all'},
     ])
 
-    let [tasks, setTasks] = useState({
+    let [tasks, setTasks] = useState<TasksStateType>({
         [todolistID1]: [
             {id: v1(), title: "HTML&CSS", isDone: true},
             {id: v1(), title: "JS", isDone: true},
