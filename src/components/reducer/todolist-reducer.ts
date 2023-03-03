@@ -22,7 +22,7 @@ export const TodolistReducer = (state: TodolistsType[], action: tsarType):Todoli
 type tsarType = removeTodolistACType | addTodolistACType | changeTodolistTitleACType | changeFilterACType
 
 type removeTodolistACType = ReturnType<typeof removeTodolistAC>
-type addTodolistACType = ReturnType<typeof addTodolistAC>
+export type addTodolistACType = ReturnType<typeof addTodolistAC>
 type changeTodolistTitleACType = ReturnType<typeof changeTodolistTitleAC>
 type changeFilterACType = ReturnType<typeof changeFilterAC>
 
