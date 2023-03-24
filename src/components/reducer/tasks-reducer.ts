@@ -1,6 +1,6 @@
 import {TasksStateType} from "../../App";
 import {v1} from "uuid";
-import {AddTodolistACType} from "./todolist-reducer";
+import {AddTodolistACType, RemoveTodolistACType} from "./todolist-reducer";
 //import {addTodolistACType} from "./todolist-reducer";
 
 export type RemoveTaskActionType = ReturnType<typeof removeTaskAC>
@@ -12,7 +12,8 @@ type ActionsType = RemoveTaskActionType |
     AddTaskActionType |
     ChangeTaskStatusType |
     ChangeTaskTitleType |
-    AddTodolistACType
+    AddTodolistACType |
+    RemoveTodolistACType
 export const tasksReducer = (state: TasksStateType, action: ActionsType): TasksStateType => {
     switch (action.type) {
         case "REMOVE-TASK": {
@@ -43,10 +44,20 @@ export const tasksReducer = (state: TasksStateType, action: ActionsType): TasksS
                 map(task => task.id === action.payload.taskId ? {...task, title: action.payload.newTitle} : task)
             }
         }
+
         case 'ADD-TODOLIST': {
             return {
                 ...state,[action.todolistId] : []
             }
+        }
+
+        case 'REMOVE-TODOLIST': {
+            //решение с помощью деструктуризации:
+            /*const {[action.id]: [], ...rest} = {...state}
+            return rest*/
+            const copyState = {...state}
+            delete copyState[action.payload.id]
+            return copyState
         }
         default:
             throw new Error("I don't understand this type")
