@@ -1,11 +1,11 @@
-import React, {ChangeEvent} from 'react';
+import React /*{ChangeEvent}*/ from 'react';
 import {FilterValuesType} from './App';
 import SuperInput from "./components/SuperInput";
 import EditableSpan from "./components/EditableSpan";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete'
 import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox'
+//import Checkbox from '@mui/material/Checkbox'
 import {SuperCheckBox} from "./components/SuperCheckBox";
 
 export type TaskType = {
@@ -63,9 +63,9 @@ export function Todolist(props: PropsType) {
             {
                 props.tasks.map(t => {
                     const onClickHandler = () => props.removeTask(props.todolistID, t.id)
-                    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+                    /*const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
                         props.changeTaskStatus(props.todolistID, t.id, e.currentTarget.checked);
-                    }
+                    }*/
 
                     const editTaskHandler = (newTitle: string) => {
                         props.editTask(props.todolistID, t.id, newTitle)
