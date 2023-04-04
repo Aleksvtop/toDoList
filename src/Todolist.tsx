@@ -47,7 +47,7 @@ export function Todolist(props: PropsType) {
     }
 
     const changeStatusHandler = (tID: string, checkedValue: boolean) => {
-        props.changeTaskStatus(props.todolistID, checkedValue, tID )
+        props.changeTaskStatus( tID, checkedValue, props.todolistID)
     }
 
     return <div>

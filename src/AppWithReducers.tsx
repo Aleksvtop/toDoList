@@ -89,8 +89,8 @@ function AppWithReducers() {
         dispatchToTasks(action)
     }
 
-    function changeFilter(todolistID: string, filter: FilterValuesType) {
-        dispatchToTodolists(changeFilterAC(todolistID, filter))
+    function changeFilter(todolistID: string, value: FilterValuesType) {
+        dispatchToTodolists(changeFilterAC(todolistID, value))
     }
 
     const editTodolist = (todolistID: string, newTodolistTitle: string) => {
@@ -109,10 +109,10 @@ function AppWithReducers() {
                         let tasksForTodolist = tasks[el.id];
 
                         if (el.filter === "active") {
-                            tasksForTodolist = tasks[el.id].filter((t: { isDone: boolean; }) => !t.isDone);
+                            tasksForTodolist = tasks[el.id].filter(t => !t.isDone);
                         }
                         if (el.filter === "completed") {
-                            tasksForTodolist = tasks[el.id].filter((t: { isDone: boolean; }) => t.isDone);
+                            tasksForTodolist = tasks[el.id].filter(t => t.isDone);
                         }
                         return <Grid item>
                             <Paper style={{padding:'10px'}}>
