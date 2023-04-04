@@ -1,5 +1,5 @@
 import React /*{ChangeEvent}*/ from 'react';
-import {FilterValuesType} from './App';
+import {FilterValuesType} from './AppWithReducers';
 import SuperInput from "./components/SuperInput";
 import EditableSpan from "./components/EditableSpan";
 import IconButton from '@mui/material/IconButton';
@@ -22,7 +22,7 @@ type PropsType = {
     editTask: (todolistID: string, taskID: string, newTitle: string) => void
     changeFilter: (todolistID: string, value: FilterValuesType) => void
     addTask: (todolistID: string, title: string) => void
-    changeTaskStatus: (todolistID: string, taskId: string, isDone: boolean) => void
+    changeTaskStatus: (taskId: string, isDone: boolean, todolistID: string) => void
     removeTodolist: (todolistId: string) => void
     editTodolist: (todolistID: string, newTitle: string) => void
     filter: FilterValuesType
@@ -47,7 +47,7 @@ export function Todolist(props: PropsType) {
     }
 
     const changeStatusHandler = (tID: string, checkedValue: boolean) => {
-        props.changeTaskStatus(props.todolistID, tID, checkedValue)
+        props.changeTaskStatus(props.todolistID, checkedValue, tID )
     }
 
     return <div>
