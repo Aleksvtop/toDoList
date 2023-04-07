@@ -4,9 +4,9 @@ import {TaskType, Todolist} from './Todolist';
 import {v1} from 'uuid';
 import SuperInput from "./components/SuperInput";
 import ButtonAppBar from "./components/ButtonAppBar";
-import Container from "@mui/material/Container";
+import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid'
-import Paper from "@mui/material/Paper";
+import Paper from '@mui/material/Paper';
 import {
     addTodolistAC,
     changeFilterAC, changeTodolistTitleAC,

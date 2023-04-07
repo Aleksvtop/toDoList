@@ -3,7 +3,7 @@ import {FilterValuesType} from './AppWithReducers';
 import SuperInput from "./components/SuperInput";
 import EditableSpan from "./components/EditableSpan";
 import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete'
+import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 //import Checkbox from '@mui/material/Checkbox'
 import {SuperCheckBox} from "./components/SuperCheckBox";
